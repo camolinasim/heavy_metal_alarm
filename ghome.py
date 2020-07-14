@@ -5,8 +5,8 @@ import json
 def cast_start():
 	payload = {
 	    "device": "Eril Display", 
-	    "source": "doorbell.mp3",
-	    "type": "local"
+	    "source": "https://www.youtube.com/watch?time_continue=11&v=XdiGdC7K4sI&feature=emb_logo",
+	    "type": "remote"
 	}
 	r = requests.post('http://ar.local:3000/cast/', json=payload)
 
