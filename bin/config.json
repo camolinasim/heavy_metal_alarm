@@ -1,0 +1,52 @@
+{
+  "port": 3000,
+  "muteStartup": false,
+  "quietHours": {
+    "enabled": false,
+    "start": "22:00",
+    "end": "08:00"
+  },
+  "maxResponses": 5,
+  "conversation": {
+    "audio": {
+      "encodingIn": "LINEAR16",
+      "sampleRateIn": 16000,
+      "encodingOut": "LINEAR16",
+      "sampleRateOut": 24000
+    },
+    "lang": "en-US",
+    "screen": {
+      "isOn": false
+    }
+  },
+  "users": [
+    {
+      "name": "rawly121",
+      "secret": {
+        "installed": {
+          "client_id": "111772831045-h5qvupm2terooij4akfb9rcb4nsrs3if.apps.googleusercontent.com",
+          "project_id": "kawaii-283120",
+          "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+          "token_uri": "https://oauth2.googleapis.com/token",
+          "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+          "client_secret": "k32Me94cg5kX1wWzIG3VqINh",
+          "redirect_uris": [
+            "urn:ietf:wg:oauth:2.0:oob",
+            "http://localhost"
+          ]
+        }
+      },
+      "tokens": {
+        "access_token": "ya29.a0AfH6SMCo2g3AzKXz3DYxctQyrdeOwX6S-qN6HHrFe_rhhsObgXqxw-PkeEH3FbXfWo_leS_L5A3JaDF3D8FMNYmAVMLzE5PJUVTbjbNVm-6HC-G_YtVVJH1FwWXZzNBGRUPSEQR7hdoyc_ccTBdJRIsGFT4pcZ0fr5c",
+        "refresh_token": "1//06BrvE_UHlRCCCgYIARAAGAYSNwF-L9IriuD9FShvaWcDIpygmMPpywHNL_JzMYEUW_5VsYNbQOE5yFeC-CiWQ2Ne_snnmZU247w",
+        "scope": "https://www.googleapis.com/auth/assistant-sdk-prototype",
+        "token_type": "Bearer",
+        "expiry_date": 1594697037440
+      }
+    }
+  ],
+  "responses": [],
+  "releaseChannel": "stable",
+  "castEnabled": false,
+  "pipCommand": "pip3"
+}
