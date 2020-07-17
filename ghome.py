@@ -2,15 +2,21 @@ import requests
 import datetime
 import time
 
+# represents the media to be casted to google devices
 video = "https://www.youtube.com/watch?v=mshYP5KgzOY"
 
 
-def cast_to(device_name):
+# Asks the name of the device to cast to and the media to send.
+# In the case of failing to connect, it will try reconnecting three more times.
+# If that fails, a connectionError exception is raised"""
+def cast_to(device_name, media):
+
     payload = {
         "device": str(device_name),
         "source": video,
         "type": "remote"
     }
+
     print("trying to cast...")
 
     r = requests.post('http://ar.local:3000/cast/', json=payload)
@@ -21,6 +27,7 @@ def cast_to(device_name):
     print(r.text)
 
 
+# stops a current casting session
 def cast_stop():
     payload = {
         "device": "Elric Brothers",
@@ -34,38 +41,42 @@ def cast_stop():
     print(r.text)
 
 
-# Asks for the time you want woken up and plays the video from cast_start method
-# at the specified time
-# if for some reason this script is still running
-# after a year, we'll stop after 365 days
+# Asks for the time you want woken up and plays the video from cast_start
+# method at the specified time
 def wake_me_up_at(hr, min, sec):
-    # sleep until 2AM
-    t = datetime.datetime.today()  # today's info
-    future = datetime.datetime(
-        t.year, t.month, t.day, hr, min, sec)  # alarm info
-    if t.hour >= hr:
-        future += datetime.timedelta(days=0)
-        print(future)
-        print("waiting. . .")
-        time.sleep((future - t).seconds)
-        cast_to("Eril Display")
+    # get today's date and time
+    today = datetime.datetime.today()
+
+    # get when the date and time of the alarm
+    alarm_time = datetime.datetime(
+        today.year, today.month, today.day, hr, min, sec)
+
+    # alarm logic
+    if today.hour >= hr:
+        alarm_time += datetime.timedelta(days=0)
+        print("waiting until " + str(alarm_time) + ". . .")
+        time.sleep((alarm_time - today).seconds)
+
+    # Cast when alarm time
+        cast_to("Eril Display", video)
 
 
+# Helper method for cast_to function. Big Idea: if the first cast attempt
+# fails, let's try it three more times
 def knock_door_three_times(payload):
     knock_door(payload)
     knock_door(payload)
     knock_door(payload)
 
 
+# Helper method for knock_three_times function
 def knock_door(payload):
     requests.post('http://ar.local:3000/cast/', json=payload)
     time.sleep(3)
 
+wake_me_up_at(6, 0, 0)
+# cast_to("Eril Display", video)
+# cast_to("Eril TV", video)
 
-def clear():
-    print('\n' * 100)
-clear()
-wake_me_up_at(14, 59, 50)
-# cast_to("Eril Display")
 
 # cast_stop()
