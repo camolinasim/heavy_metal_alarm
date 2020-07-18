@@ -4,8 +4,8 @@ import time
 from multiprocessing import Process, current_process
 
 # represents the media to be casted to google devices
-video = "https://www.youtube.com/watch?v=9n-yiNx8sbY"
-shia = "https://www.youtube.com/watch?v=qX1PvJfpbc4"
+video = "https://www.youtube.com/watch?v=CSvFpBOe8eY"  # chop suey
+shia = "https://www.youtube.com/watch?v=qX1PvJfpbc4"  # DO IT!!!
 
 # Asks the name of the device to cast to and the media to send.
 # In the case of failing to connect, it will try reconnecting three more times.
@@ -56,12 +56,12 @@ def wake_me_up_at(hr, min, sec):
 
     # alarm logic
     if today.hour >= hr:
-        alarm_time += datetime.timedelta(days=0)
+        alarm_time += datetime.timedelta(days=1)
         print("waiting until " + str(alarm_time) + ". . .")
         time.sleep((alarm_time - today).seconds)
 
     # Cast when alarm time
-        cast_to("Eril Display", media)
+        synchronize()
 
 
 # Helper method for cast_to function. Big Idea: if the first cast attempt
@@ -95,10 +95,10 @@ def synchronize():
         process.start()
         process.join()
 
-synchronize()
-# wake_me_up_at(6, 0, 0)
+# synchronize()
+wake_me_up_at(6, 0, 0)
 # cast_to("Eril Display", video)
 # cast_to("Eril TV", video)
 
-time.sleep(12)
+time.sleep(180)
 cast_stop()
