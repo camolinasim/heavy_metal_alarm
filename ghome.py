@@ -55,7 +55,11 @@ def wake_me_up_at(hr, min, sec):
         today.year, today.month, today.day, hr, min, sec)
 
     # alarm logic
-    if today.hour >= hr:
+    alarm_time_is_valid = today.hour >= hr or today.hour == 0
+    # need to change this variable because its confusing (alarm_time_is_valid)
+    # -- if its 12 am in the morning it should not add an extra day to the
+    # counter
+    if alarm_time_is_valid:
         alarm_time += datetime.timedelta(days=1)
         print("waiting until " + str(alarm_time) + ". . .")
         time.sleep((alarm_time - today).seconds)
@@ -97,8 +101,8 @@ def synchronize():
 
 # synchronize()
 wake_me_up_at(6, 0, 0)
-# cast_to("Eril Display", video)
+#cast_to("Eril Display", video)
 # cast_to("Eril TV", video)
 
-time.sleep(180)
+time.sleep(260)
 cast_stop()

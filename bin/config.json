@@ -47,6 +47,6 @@
   ],
   "responses": [],
   "releaseChannel": "stable",
-  "castEnabled": false,
+  "castEnabled": true,
   "pipCommand": "pip3"
 }
